@@ -28,15 +28,15 @@ public class CartServer implements Runnable {
 
     public void run() {
         configureContext();
-        startServer();
+        startServer(PORT);
     }
 
     private void configureContext() {
         new ApplicationContext().apply();
     }
 
-    private void startServer() {
-        Server server = new Server(PORT);
+    private void startServer(int port) {
+        Server server = new Server(port);
         ServletContextHandler contextHandler = new ServletContextHandler(server, "/");
         contextHandler.addFilter(EntityManagerContextFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
 
